@@ -1,4 +1,4 @@
-import type { Json } from './supabase-types'
+/// import type { Json } from './supabase-types'
 
 export type Database = {
   public: {
