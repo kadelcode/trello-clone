@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter} 
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
+import { AuthApiError } from "@supabase/supabase-js"
 
 
 export default function Login() {
@@ -59,12 +60,16 @@ export default function Login() {
 
             router.push("/boards")
             router.refresh()
-        } catch (error: any) {
-            setError(error.message)
-            toast("Login failed", {
-                description: error.message,
-                style: { backgroundColor: "#dc2626", color: "#fff" },
-            })
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setError(error.message)
+                toast("Login failed", {
+                    description: error.message,
+                    style: { backgroundColor: "#dc2626", color: "#fff" },
+                })
+            } else {
+                console.error("An unknow error occurred.")
+            }
         } finally {
             setLoading(false)
         }
