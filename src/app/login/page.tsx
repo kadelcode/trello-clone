@@ -12,8 +12,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter} 
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
-import { AuthApiError } from "@supabase/supabase-js"
-
 
 export default function Login() {
     const [email, setEmail] = useState("");
